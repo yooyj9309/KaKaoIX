@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BLUE AUCTION</title>
+<title>Kakao Friends</title>
 
 <style rel="stylesheet">
 @charset "UTF-8";
@@ -286,7 +286,7 @@ body .container .content .signup-cont {
 
 	<section class="container">
 		<article class="half">
-			<h1>Blue Auction</h1>
+			<h1>KAKAO FREINDS</h1>
 			<div class="tabs">
 				<span class="tab signin active"><a href="#signin">Sign in</a></span>
 				<span class="tab signup"><a href="#signup">Sign up</a></span>
