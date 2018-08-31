@@ -31,17 +31,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	userInfo 
         VALUES (
         	#{userId},
-        	#{userPw},
-        	0
+        	#{userPw}
         )
     </insert>
-    
-    <select id = "selectMyInfo" parameterType = "String" resultType = "com.example.demo.domain.UserVO">
-    	SELECT 
-    		coinAmount 
-    	FROM 
-    		userInfo
-    	WHERE  
-    		userId = #{userId}
-    </select>
+
 </mapper>

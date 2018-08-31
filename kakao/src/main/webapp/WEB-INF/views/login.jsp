@@ -41,7 +41,7 @@ body .container .half {
   padding: 58px 40px 0;
 }
 body .container .half.bg {
-  background-image: url("http://d1841mjet2hm8m.cloudfront.net/thumb-400/fr_1099/1620/86/d50adaf46122215d80090765d8c3fbdd.jpg");
+  background-image: url("https://img1.daumcdn.net/thumb/R300x300/?fname=https%3A%2F%2Ft1.daumcdn.net%2Ffriends%2Fprod%2Fproduct%2FFRPBRYMPD184_AW_00.jpg");
   background-size: 400px;
   background-repeat: no-repeat;
 }

@@ -102,6 +102,7 @@ public class UserService {
 		try {
 			userMapper.insertNewUserInformation(joinInformation);
 		} catch (DataAccessException e) {
+			LOGGER.error(e.getMessage());
 			throw new ServerErrorException("이미 존재하는 아이디 입니다.");
 		}
 
