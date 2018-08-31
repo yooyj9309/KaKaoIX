@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
  
-<mapper namespace="com.example.demo.dao.UserDAO">
+<mapper namespace="com.example.demo.mapper.UserMapper">
 
  	<select id="selectCheckInformation" parameterType = "com.example.demo.domain.UserVO" resultType="String">
         SELECT 

@@ -50,7 +50,7 @@ $(document).ready(function() {
 			data : param,
 			success : function(response) {
 				alert(response);
-				location.href = "/board"
+				location.href = "/main"
 			},
 			error : function(response) {
 				alert(response.responseText);
@@ -103,7 +103,6 @@ $(document).ready(function() {
 	});
 	
 });
-
 
 function validate(str) {
 	var reg_pwd = /^.*(?=.{6,20})(?=.*[a-zA-Z]).*$/;

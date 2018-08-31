@@ -1,11 +1,14 @@
-package com.example.demo.dao;
+package com.example.demo.mapper;
 
 import com.example.demo.domain.UserVO;
 
-public interface UserDAO {
+public interface UserMapper {
+
 	void insertNewUserInformation(UserVO userInformation);
 
 	String selectCheckInformation(UserVO loginInformation);
+	
+	String selectIdCheck(UserVO loginInformation);
 	
 	UserVO selectMyInfo(String userId);
 }

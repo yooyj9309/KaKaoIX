@@ -13,7 +13,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @SpringBootApplication
-@MapperScan(value = { "com.example.demo.dao" })
+@MapperScan(value = { "com.example.demo.mapper" })
 public class KakaoApplication {
 
 	public static void main(String[] args) {
@@ -30,9 +30,5 @@ public class KakaoApplication {
 
 		return sessionFactory.getObject();
 	}
-	@Bean
-	public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
-		HiddenHttpMethodFilter filter = new HiddenHttpMethodFilter();
-		return filter;
-	}
+	
 }

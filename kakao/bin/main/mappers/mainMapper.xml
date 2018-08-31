@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.MainMapper">
+
+	<select id = "selectProductList" resultType = "com.example.demo.domain.ProductVO">
+		SELECT 
+			productId,
+			productPrice,
+			productName,
+			productDescribe,
+			imgPath
+		FROM 
+			productList
+	</select>
+	
+	<select id = "selectProductById" parameterType = "int" resultType = "com.example.demo.domain.ProductVO">
+		SELECT 
+			productId,
+			productPrice,
+			productName,
+			productDescribe,
+			imgPath
+		FROM 
+			productList
+		WHERE
+			productId = #{productId}
+	</select>
+	
+	<select id = "selectAmount" resultType = "String" parameterType = "Map">
+		SELECT 
+			userId
+		FROM 
+			ledgerList
+		WHERE
+			userId = #{userId}
+		AND
+			productId = #{productId}
+	</select>
+	
+	<select id = "selectMyProductList" parameterType = "String" resultType = "com.example.demo.domain.ProductVO">
+		SELECT 
+			productList.productId,
+			productList.productPrice,
+			productList.productName,
+			productList.productDescribe,
+			ledgerList.amount
+  		FROM 
+  			ledgerList,  
+  			productList
+    	WHERE 
+    		ledgerList.userId = #{userId}
+    	AND
+    		ledgerList.productId = productList.productId
+	</select>
+	
+ 	<insert id = "insertProductInformation" parameterType = "com.example.demo.domain.ProductVO">
+		INSERT INTO
+			productList(
+				productName,
+				productPrice,
+				productDescribe,
+				imgPath
+				)
+		VALUES
+			(
+			#{productName},
+			#{productPrice},
+			#{productDescribe},
+			#{imgPath}
+			)
+	</insert>
+	
+	<insert id = "insertTransaction" parameterType = "Map">
+		INSERT INTO
+			ledgerList
+		VALUES
+			(
+			#{userId},
+			#{productId},
+			1
+			)
+	</insert>
+	
+	<update id="updateAmount" parameterType = "Map">
+        UPDATE 
+        	ledgerList
+        SET 
+        	amount = amount+1
+        WHERE 
+        	userId = #{userId}
+        AND
+        	productId = #{productId}
+    </update>
+</mapper>

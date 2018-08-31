@@ -3,7 +3,6 @@ package com.example.demo.service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.dao.UserDAO;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.domain.UserVO;
 import com.example.demo.exception.EmptyInputException;
 import com.example.demo.exception.InvalidInputException;
@@ -27,10 +25,10 @@ public class UserService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
 	@Autowired
-	private UserDAO userDAO;
+	private UserMapper userMapper;
 
 	public UserVO selectMyInfo(String userId) {
-		UserVO userInfo = userDAO.selectMyInfo(userId);
+		UserVO userInfo = userMapper.selectMyInfo(userId);
 		return userInfo;
 	}
 
@@ -51,7 +49,7 @@ public class UserService {
 
 		loginInformation.setUserPw(encryptPw);
 		try {
-			resultId = userDAO.selectCheckInformation(loginInformation);
+			resultId = userMapper.selectCheckInformation(loginInformation);
 		} catch (DataAccessException e) {
 			throw new ServerErrorException("서버 내부 문제입니다.");
 		}
@@ -102,7 +100,7 @@ public class UserService {
 		joinInformation.setUserPw(SecurityUtil.encryptSHA256(userId + userPw));
 
 		try {
-			userDAO.insertNewUserInformation(joinInformation);
+			userMapper.insertNewUserInformation(joinInformation);
 		} catch (DataAccessException e) {
 			throw new ServerErrorException("이미 존재하는 아이디 입니다.");
 		}

@@ -11,10 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.exception.ServerErrorException;
 
 public class ImgUtil {
-	final static String basicImgPath = "../images/auction.png";
+	final static String basicImgPath = "../images/ryan.png";
 
 	public static String getRealPath(String savePath, HttpSession session) {
-
 		String realPath = session.getServletContext().getRealPath(savePath);
 		return realPath;
 	}
@@ -35,7 +34,6 @@ public class ImgUtil {
 			fileName = uuid.toString() + "_" + fileName;
 			file = new File(path, fileName);
 		}
-		System.out.println(fileName);
 		return fileName;
 	}
 
@@ -53,7 +51,7 @@ public class ImgUtil {
 					imgfile.transferTo(file);
 					imgPath = "../" + savePath + "/" + saveName;
 				} catch (Exception e) {
-					throw new ServerErrorException("�꽌踰� �뿉�윭�엯�땲�떎.");
+					throw new ServerErrorException("이미지 업로드에 실패했습니다.");
 				}
 			} else {
 				if (!StringUtils.isEmpty(fileimgPath)) {
