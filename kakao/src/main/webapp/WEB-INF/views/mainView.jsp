@@ -47,11 +47,10 @@
 								<a href="product/${product.productId}?productId=${product.productId}" class="image"> 
 									<img src="${product.imgPath}" width="350" height="350" alt="" />
 								</a>
-
 								<h3>${product.productName}</h3>
 								<p>${product.productPrice}원</p>
-
 							</article>
+							
 						</c:forEach>
 					</div>
 				</section>

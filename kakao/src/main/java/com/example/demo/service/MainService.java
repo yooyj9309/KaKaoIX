@@ -30,6 +30,10 @@ public class MainService {
 	@Autowired
 	private MainMapper mainMapper;
 
+	/**
+	 * 데이터 베이스에서 상품 리스트들을 불러오는 기능
+	 * @return 상품 리스트
+	 */
 	public List<ProductVO> getProductList() {
 		List<ProductVO> productList = null;
 		try {
@@ -41,6 +45,11 @@ public class MainService {
 		return productList;
 	}
 
+	/**
+	 * 해당 Id의 상품의 정보만 불러오는 기능
+	 * @param productId
+	 * @return 상품의 정보
+	 */
 	public ProductVO getProductById(int productId) {
 		ProductVO product = null;
 		try {
@@ -52,6 +61,11 @@ public class MainService {
 		return product;
 	}
 
+	/**
+	 * 해당 유저의 구매내역 리스트를 불러오는 기능
+	 * @param userId
+	 * @return 구매 내역 리스트
+	 */
 	public List<ProductVO> getMyProductList(String userId) {
 		List<ProductVO> productList = null;
 		try {
@@ -63,6 +77,10 @@ public class MainService {
 		return productList;
 	}
 	
+	/**
+	 * 구매 내역을 데이터베이스에 저장하는 기능
+	 * @param map
+	 */
 	public void recordTransaction(Map<String,Object> map) {
 		try {
 			if(mainMapper.selectAmount(map)==null ) {
@@ -78,6 +96,11 @@ public class MainService {
 		}
 	}
 
+	/**
+	 * 상품을 등록하는 기능
+	 * @param productInformation
+	 * @param session
+	 */
 	public void registerProduct(ProductVO productInformation, HttpSession session) {
 		String productDescirbe = productInformation.getProductDescribe();
 		String productName = productInformation.getProductName();
@@ -118,6 +141,10 @@ public class MainService {
 		}
 	}
 
+	/**
+	 * 상품 등록에 실패 했을 경우 사진을 지우는 기능
+	 * @param filePath
+	 */
 	private void deletePhoto(String filePath) {
 		File file = new File(filePath);
 		if (file.exists()) {
@@ -131,6 +158,11 @@ public class MainService {
 		}
 	}
 
+	/**
+	 * 상품을 등록할 때 올린 파일이 사진인지 아닌지 확인하는 기능
+	 * @param str
+	 * @return
+	 */
 	private boolean isPhotoFile(String str) {
 		String allowPattern = ".+\\.(jpg|png|JPG|PNG)$";
 		boolean result = false;

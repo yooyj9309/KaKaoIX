@@ -10,5 +10,4 @@ public interface UserMapper {
 	
 	String selectIdCheck(UserVO loginInformation);
 	
-	UserVO selectMyInfo(String userId);
 }

@@ -27,11 +27,11 @@ public class UserService {
 	@Autowired
 	private UserMapper userMapper;
 
-	public UserVO selectMyInfo(String userId) {
-		UserVO userInfo = userMapper.selectMyInfo(userId);
-		return userInfo;
-	}
-
+	/**
+	 * 사용자 입력정보를 통해 회원확인 로직 수행
+	 * @param loginInformation
+	 * @return
+	 */
 	public UserVO loginService(UserVO loginInformation) {
 		String userId = loginInformation.getUserId().trim();
 		String userPw = loginInformation.getUserPw().trim();
@@ -61,16 +61,11 @@ public class UserService {
 		return loginInformation;
 	}
 
-	private boolean isValidPattern(String input) {
-		Pattern pattern = Pattern.compile("^.*(?=.{6,20})(?=.*[a-zA-Z]).*$");
-		Matcher matcher = pattern.matcher(input);
-		if (matcher.find()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
+	/**
+	 * 회원가입 로직을 수행하기 위한 기능
+	 * 비밀번호 체크, 아이디 중복 확인
+	 * @param joinInformation
+	 */
 	public void joinService(UserVO joinInformation) {
 		LOGGER.info(joinInformation.toString());
 		String userId = joinInformation.getUserId().trim();
@@ -106,6 +101,21 @@ public class UserService {
 			throw new ServerErrorException("이미 존재하는 아이디 입니다.");
 		}
 
+	}
+	
+	/**
+	 * 아이디 패턴 체크 영문 6~20자
+	 * @param input
+	 * @return
+	 */
+	private boolean isValidPattern(String input) {
+		Pattern pattern = Pattern.compile("^.*(?=.{6,20})(?=.*[a-zA-Z]).*$");
+		Matcher matcher = pattern.matcher(input);
+		if (matcher.find()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

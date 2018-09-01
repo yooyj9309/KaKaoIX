@@ -8,7 +8,7 @@ import com.example.demo.exception.ServerErrorException;
 
 public class SecurityUtil {
 	/**
-	 * string 암호화
+	 * 비밀 번호를 암호화 하기 위한 함수
 	 * 
 	 * @param str
 	 * @return 암호화된 string (hash)

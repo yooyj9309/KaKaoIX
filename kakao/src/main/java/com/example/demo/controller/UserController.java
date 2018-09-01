@@ -27,6 +27,10 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * 로그인 화면
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login() {
 		ModelAndView loginView = new ModelAndView();
@@ -34,6 +38,12 @@ public class UserController {
 		return loginView;
 	}
 
+	/**
+	 * 로그인 내부 로직 처리
+	 * @param loginInformation
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<String> login(@ModelAttribute("UserVO") UserVO loginInformation, HttpSession session) {
 		

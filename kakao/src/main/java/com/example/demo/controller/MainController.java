@@ -30,6 +30,10 @@ public class MainController {
 	@Autowired
 	private MainService mainService;
 	
+	/**
+	 * 물품 리스트들을 보여주는 메인 화면 
+	 * @return 메인 화면
+	 */
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView getMainView() {
 		ModelAndView mav = new ModelAndView();
@@ -38,7 +42,13 @@ public class MainController {
 		mav.setViewName("mainView");
 		return mav;
 	}
-
+	
+	/**
+	 * 상품을 클릭 후 나오는 상세 화면
+	 * @param productId
+	 * @param session
+	 * @return 상세 화면
+	 */
 	@RequestMapping(value = "product/{productId}", method = RequestMethod.GET)
 	public ModelAndView getDetailView(@PathVariable("productId") int productId, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
@@ -48,13 +58,23 @@ public class MainController {
 		return mav;
 	}
 	
+	/**
+	 * 어드민 계정으로 상품을 게시하는 화면을 보여주는 역할
+	 * @return
+	 */
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
-	public ModelAndView getFormView() throws Exception {
+	public ModelAndView getFormView() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("form");
 		return mav;
 	}
 	
+	/**
+	 * 구매 내역 리스트를 보여주는 화면
+	 * @param session
+	 * @param mav
+	 * @return
+	 */
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView getMyPageView(HttpSession session, ModelAndView mav) {
 		String userId = (String) session.getAttribute("userId");
@@ -65,6 +85,12 @@ public class MainController {
 		return mav;
 	}
 	
+	/**
+	 * 상품에 관한 정보를 받고 데이터 베이스에 저장
+	 * @param productInformation
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/form", method = RequestMethod.POST)
 	public ResponseEntity<String> registerBoard(@ModelAttribute("ProductVO") ProductVO productInformation, HttpSession session) {
 		LOGGER.info(productInformation.toString());
@@ -73,6 +99,12 @@ public class MainController {
 		return new ResponseEntity<String>("게시물 등록에 성공하셨습니다.", HttpStatus.OK);
 	}
 
+	/**
+	 * 구매 내역을 데이터베이스에 저장
+	 * @param productId
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "buy/{productId}", method = RequestMethod.POST)
 	public ResponseEntity<String> processPurchase(@PathVariable("productId") int productId, HttpSession session) {
 		LOGGER.info(productId+"번 물품을 구매하였습니다.");

@@ -37,6 +37,16 @@ public class ImgUtil {
 		return fileName;
 	}
 
+	/**
+	 * 이미지 업로드 기능
+	 * 이미지가 없을 경우 기본 이미지를 활용하도록 구현
+	 * 
+	 * @param savePath
+	 * @param session
+	 * @param imgfile
+	 * @param fileimgPath
+	 * @return
+	 */
 	public static String imgUpload(String savePath, HttpSession session, MultipartFile imgfile, String fileimgPath) {
 		String imgPath = "";
 		try {
